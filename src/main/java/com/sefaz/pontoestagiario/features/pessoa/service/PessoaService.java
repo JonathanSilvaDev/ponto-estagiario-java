@@ -14,10 +14,6 @@ public class PessoaService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
-//    public List<Pessoa> buscarPessoas(){
-//        return pessoaRepository.findAll();
-//    }
-
     public List<Pessoa> buscarTodasPessoas(){
         return pessoaRepository.findAll();
     }
