@@ -2,17 +2,19 @@ package com.sefaz.pontoestagiario.features.pessoa.service;
 
 import com.sefaz.pontoestagiario.features.pessoa.model.entity.Pessoa;
 import com.sefaz.pontoestagiario.features.pessoa.model.repository.PessoaRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class PessoaService {
-    @Autowired
-    private PessoaRepository pessoaRepository;
+
+    private final PessoaRepository pessoaRepository;
+
+    public PessoaService(PessoaRepository pessoaRepository) {
+        this.pessoaRepository = pessoaRepository;
+    }
+
 
     public List<Pessoa> buscarTodasPessoas(){
         return pessoaRepository.findAll();

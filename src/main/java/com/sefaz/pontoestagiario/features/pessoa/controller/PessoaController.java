@@ -2,17 +2,19 @@ package com.sefaz.pontoestagiario.features.pessoa.controller;
 
 import com.sefaz.pontoestagiario.features.pessoa.model.entity.Pessoa;
 import com.sefaz.pontoestagiario.features.pessoa.service.PessoaService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/pessoas")
-@RequiredArgsConstructor
 public class PessoaController {
 
     private final PessoaService pessoaService;
+
+    public PessoaController(PessoaService pessoaService) {
+        this.pessoaService = pessoaService;
+    }
 
     @GetMapping
     public List<Pessoa> buscarTodasPessoas(){
