@@ -1,43 +1,20 @@
 package com.sefaz.pontoestagiario.features.pessoa.controller;
 
 import com.sefaz.pontoestagiario.features.pessoa.model.entity.Pessoa;
-import com.sefaz.pontoestagiario.features.pessoa.service.PessoaService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
 @RestController
-@RequestMapping("/pessoas")
-public class PessoaController {
+public interface PessoaController {
+    public List<Pessoa> buscarTodasPessoas();
 
-    private final PessoaService pessoaService;
+    public Pessoa buscarPessoaPorId(@PathVariable Long id);
 
-    public PessoaController(PessoaService pessoaService) {
-        this.pessoaService = pessoaService;
-    }
+    public Pessoa adicionarPessoa(@RequestBody Pessoa pessoa);
 
-    @GetMapping
-    public List<Pessoa> buscarTodasPessoas(){
-        return pessoaService.buscarTodasPessoas();
-    }
+    public Pessoa atualizarPessoa(@PathVariable Long id, @RequestBody Pessoa novaPessoa);
 
-    @GetMapping("/{id}")
-    public Pessoa buscarPessoaPorId(@PathVariable Long id) {
-        return pessoaService.buscarPessoaPorId(id);
-    }
-
-    @PostMapping
-    public Pessoa adicionarPessoa(@RequestBody Pessoa pessoa) {
-        return pessoaService.adicionarPessoa(pessoa);
-    }
-
-    @PutMapping("/{id}")
-    public Pessoa atualizarPessoa(@PathVariable Long id, @RequestBody Pessoa novaPessoa) {
-        return pessoaService.atualizarPessoa(id, novaPessoa);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deletarPessoa(@PathVariable Long id) {
-        pessoaService.deletarPessoa(id);
-    }
+    public void deletarPessoa(@PathVariable Long id);
 }
